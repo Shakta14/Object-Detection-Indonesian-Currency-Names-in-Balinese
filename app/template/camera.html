@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection with Custom YOLOv8 - Camera</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    let videoElement = document.querySelector('video');
+                    videoElement.srcObject = stream;
+                    videoElement.play();
+                })
+                .catch(function(err) {
+                    console.error("Camera access denied.", err);
+                    alert("Camera access denied. Returning to home.");
+                    window.location.href = "{{ url_for('index') }}";
+                });
+        }
+
+        function stopCamera() {
+            let videoElement = document.querySelector('video');
+            let stream = videoElement.srcObject;
+            let tracks = stream.getTracks();
+
+            for (let i = 0; i < tracks.length; i++) {
+                tracks[i].stop();
+            }
+
+            videoElement.srcObject = null;
+            window.location.href = "{{ url_for('index') }}";
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            startCamera();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Object Detection with Custom YOLOv8 - Camera</h1>
+        <div>
+            <video autoplay></video>
+            <img src="{{ url_for('video_feed') }}" id="camera-feed" style="display: none;">
+        </div>
+        <div id="detected-objects"></div>
+        <button onclick="stopCamera()">Stop Camera</button>
+        <button onclick="stopCamera()">Back to Home</button>
+    </div>
+
+    <script>
+        const source = new EventSource("{{ url_for('video_feed') }}");
+        source.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const objects = data.detected_objects.join(", ");
+            document.getElementById("detected-objects").innerText = `Detected Objects: ${objects}`;
+        };
+    </script>
+</body>
+</html>

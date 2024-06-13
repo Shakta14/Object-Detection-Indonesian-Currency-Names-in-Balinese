@@ -1,0 +1,56 @@
+body {
+    background-color: #041562;
+    color: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #11468F;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 10px auto;
+}
+
+button,
+.camera-button {
+    background-color: #DA1212;
+    color: #EEEEEE;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+button:hover,
+.camera-button:hover {
+    background-color: #FF0000;
+}
+
+.result img {
+    max-width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    display: block;
+
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
