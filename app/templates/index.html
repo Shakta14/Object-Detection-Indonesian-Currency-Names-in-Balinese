@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency in Balinese Languages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="main-content">
+        <h1>Currency in Balinese Languages</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Scan</button>
+        </form>
+        <button onclick="window.location.href='/camera'">Use Camera</button>
+    </div>
+</body>
+</html>

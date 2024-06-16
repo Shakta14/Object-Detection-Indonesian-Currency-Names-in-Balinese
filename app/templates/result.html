@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency in Balinese Languages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="main-content">
+        <h1>Result</h1>
+        <div class="result">
+            <div>
+                <h2>Original</h2>
+                <img src="{{ url_for('static', filename='uploads/' + original) }}" alt="Original Image" class="result-image">
+            </div>
+            <div>
+                <h2>Detected</h2>
+                <img src="{{ url_for('static', filename='uploads/' + detected) }}" alt="Detected Image" class="result-image">
+            </div>
+            <div>
+                <h2>Detections</h2>
+                <ul>
+                    {% for detection in detections %}
+                        <li>{{ detection }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <button onclick="window.location.href='/'">Back</button>
+    </div>
+</body>
+</html>

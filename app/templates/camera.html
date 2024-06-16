@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency in Balinese Languages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="main-content">
+        <div>
+            <img src="{{ url_for('video_feed') }}" id="video-stream" alt="Camera Stream">
+        </div>
+        <button onclick="window.location.href='/'" id="back-button">Back</button>
+        
+        <script>
+            document.getElementById('back-button').onclick = function() {
+                fetch('/stop_camera')
+                    .then(response => {
+                        if (response.redirected) {
+                            window.location.href = response.url;
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        </script>
+    </div>
+</body>
+</html>
